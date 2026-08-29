@@ -1,0 +1,9 @@
+﻿
+> hostelgrievance@0.0.1 check
+> svelte-kit sync && svelte-check --tsconfig ./tsconfig.json
+
+Loading svelte-check in workspace: d:\GIET-Learnathon-5.0-main\GIET-Learnathon-5.0-main
+Getting Svelte diagnostics...
+
+[32msvelte-check found 0 errors and 0 warnings
+[39m

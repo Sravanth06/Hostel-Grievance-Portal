@@ -1,0 +1,4 @@
+﻿Command: npx tsc --noEmit -p tsconfig.server.json
+
+Result: PASSED
+Server TypeScript compilation completed successfully with no errors.

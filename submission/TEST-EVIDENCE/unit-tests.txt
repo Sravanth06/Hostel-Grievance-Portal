@@ -1,0 +1,11 @@
+﻿
+ RUN  v4.1.11 D:/GIET-Learnathon-5.0-main/GIET-Learnathon-5.0-main
+
+ Γ£ô src/server/app.test.ts (14 tests) 1136ms
+ Γ£ô src/server/security.test.ts (8 tests) 570ms
+
+ Test Files  2 passed (2)
+      Tests  22 passed (22)
+   Start at  00:19:59
+   Duration  2.36s (transform 141ms, setup 0ms, import 318ms, tests 1.71s, environment 0ms)
+
