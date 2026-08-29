@@ -1,4 +1,4 @@
-# Hardening Register — HostelGrievance
+# Hardening Register HostelGrievance
 
 This document records the security findings identified during the
 pre-launch hardening exercise, the security consequence of each finding,
@@ -31,12 +31,11 @@ identifiers.
 | HG-SEC-016 | Database relationship enforcement | Invalid references between security-sensitive records could create inconsistent authorization state | Enabled SQLite foreign keys and retained relational constraints between users, sessions, grievances, comments, attachments, and audit records | Database initialization/reset and application tests pass | SQLite remains a local application database and requires filesystem protection |
 | HG-SEC-017 | Unknown resources and unauthorized access could expose implementation details | Resource enumeration and error handling could reveal unnecessary information | Protected resource lookups return controlled application errors and authorization is performed before sensitive data is returned | Existing tests confirm unauthorized grievance access and unknown grievance handling | Response differences such as timing may still provide limited enumeration signals |
 | HG-SEC-018 | Security boundary depended too heavily on the frontend | UI restrictions can be bypassed by directly calling APIs | Moved security decisions to server-side authentication, role checks, ownership checks, validation, and resource access controls | API tests exercise protected endpoints directly without relying on the UI | Every future API endpoint must follow the same server-side enforcement model |
-
----
-
+| HG-SEC-019 | Hardcoded development credentials displayed in login UI | Publicly displayed valid credentials could allow unauthorized users to authenticate immediately | Removed the static demo-credential block containing Student and Warden development credentials from the login component | Login page was loaded and visually verified; development credentials are no longer displayed | Seeded development accounts must still be removed or replaced before production |
+| HG-SEC-020 | Stored Cross-Site Scripting (XSS) in comment rendering | User-controlled comment content rendered as raw HTML could execute attacker-controlled script in another user's browser | Replaced Svelte raw HTML rendering `{@html comment.body}` with normal text interpolation `{comment.body}` | Svelte check: 0 errors and 0 warnings; npm test: 22/22 tests passed; raw HTML rendering removed | Future UI components must not render untrusted content using raw HTML |
 # Detailed Findings
 
-## HG-SEC-001 — Password Protection
+## HG-SEC-001 Password Protection
 
 ### Finding
 
@@ -71,7 +70,7 @@ credential monitoring, and password-reset controls.
 
 ---
 
-## HG-SEC-002 — Server-Side Sessions
+## HG-SEC-002 Server-Side Sessions
 
 ### Finding
 
@@ -105,7 +104,7 @@ A valid stolen session remains usable until it expires or is destroyed.
 
 ---
 
-## HG-SEC-003 — Session Cookie Hardening
+## HG-SEC-003 Session Cookie Hardening
 
 ### Finding
 
@@ -138,7 +137,7 @@ HTTPS must be correctly configured in production.
 
 ---
 
-## HG-SEC-004 — Grievance Authorization
+## HG-SEC-004 Grievance Authorization
 
 ### Finding
 
@@ -165,7 +164,7 @@ Future endpoints must implement the same object-level authorization model.
 
 ---
 
-## HG-SEC-005 — Attachment Authorization
+## HG-SEC-005 Attachment Authorization
 
 ### Finding
 
@@ -191,7 +190,7 @@ Future attachment operations must preserve ownership checks.
 
 ---
 
-## HG-SEC-006 — Student/Warden Separation
+## HG-SEC-006 Student/Warden Separation
 
 ### Finding
 
@@ -223,7 +222,7 @@ operational protection.
 
 ---
 
-## HG-SEC-007 — Untrusted Input
+## HG-SEC-007 Untrusted Input
 
 ### Finding
 
@@ -259,7 +258,7 @@ New endpoints must continue using the same validation model.
 
 ---
 
-## HG-SEC-009 — File Signature Validation
+## HG-SEC-009 File Signature Validation
 
 ### Finding
 
@@ -295,7 +294,7 @@ implementation is safe.
 
 ---
 
-## HG-SEC-011 — Filesystem Boundary
+## HG-SEC-011 Filesystem Boundary
 
 ### Finding
 
@@ -329,7 +328,7 @@ server.
 
 ---
 
-## HG-SEC-012 — CORS
+## HG-SEC-012 CORS
 
 ### Finding
 
@@ -362,7 +361,7 @@ cross-origin risk.
 
 ---
 
-## HG-SEC-013 — Error Handling
+## HG-SEC-013 Error Handling
 
 ### Finding
 
@@ -391,7 +390,7 @@ Server logs must be protected from unauthorized access.
 
 ---
 
-## HG-SEC-014 — Security Visibility
+## HG-SEC-014 Security Visibility
 
 ### Finding
 
@@ -453,5 +452,9 @@ functional.
 
 The following commands were executed successfully during hardening:
 
-```text
+``text
 npx tsc --noEmit -p tsconfig.server.json
+npm run typecheck
+npm test
+npm run build
+``
