@@ -1,4 +1,4 @@
-﻿# Hardening Register â€” HostelGrievance
+﻿# Hardening Register HostelGrievance
 
 This document records the security findings identified during the
 pre-launch hardening exercise, the security consequence of each finding,
@@ -38,7 +38,7 @@ identifiers.
 | HG-SEC-020 | Stored Cross-Site Scripting (XSS) in comment rendering | User-controlled comment content rendered as raw HTML could execute attacker-controlled script in another user's browser | Replaced Svelte raw HTML rendering `{@html comment.body}` with normal text interpolation `{comment.body}` | Svelte check: 0 errors and 0 warnings; npm test: 22/22 tests passed; raw HTML rendering removed | Future UI components must not render untrusted content using raw HTML |
 # Detailed Findings
 
-## HG-SEC-001 â€” Password Protection
+## HG-SEC-001 Password Protection
 
 ### Finding
 
@@ -73,7 +73,7 @@ credential monitoring, and password-reset controls.
 
 ---
 
-## HG-SEC-002 â€” Server-Side Sessions
+## HG-SEC-002 Server-Side Sessions
 
 ### Finding
 
@@ -107,7 +107,7 @@ A valid stolen session remains usable until it expires or is destroyed.
 
 ---
 
-## HG-SEC-003 â€” Session Cookie Hardening
+## HG-SEC-003 Session Cookie Hardening
 
 ### Finding
 
@@ -140,7 +140,7 @@ HTTPS must be correctly configured in production.
 
 ---
 
-## HG-SEC-004 â€” Grievance Authorization
+## HG-SEC-004 Grievance Authorization
 
 ### Finding
 
@@ -167,7 +167,7 @@ Future endpoints must implement the same object-level authorization model.
 
 ---
 
-## HG-SEC-005 â€” Attachment Authorization
+## HG-SEC-005 Attachment Authorization
 
 ### Finding
 
@@ -193,7 +193,7 @@ Future attachment operations must preserve ownership checks.
 
 ---
 
-## HG-SEC-006 â€” Student/Warden Separation
+## HG-SEC-006 Student/Warden Separation
 
 ### Finding
 
@@ -225,7 +225,7 @@ operational protection.
 
 ---
 
-## HG-SEC-007 â€” Untrusted Input
+## HG-SEC-007 Untrusted Input
 
 ### Finding
 
@@ -261,7 +261,7 @@ New endpoints must continue using the same validation model.
 
 ---
 
-## HG-SEC-009 â€” File Signature Validation
+## HG-SEC-009 File Signature Validation
 
 ### Finding
 
@@ -297,7 +297,7 @@ implementation is safe.
 
 ---
 
-## HG-SEC-011 â€” Filesystem Boundary
+## HG-SEC-011 Filesystem Boundary
 
 ### Finding
 
@@ -331,7 +331,7 @@ server.
 
 ---
 
-## HG-SEC-012 â€” CORS
+## HG-SEC-012 CORS
 
 ### Finding
 
@@ -364,7 +364,7 @@ cross-origin risk.
 
 ---
 
-## HG-SEC-013 â€” Error Handling
+## HG-SEC-013 Error Handling
 
 ### Finding
 
@@ -393,7 +393,7 @@ Server logs must be protected from unauthorized access.
 
 ---
 
-## HG-SEC-014 â€” Security Visibility
+## HG-SEC-014 Security Visibility
 
 ### Finding
 
